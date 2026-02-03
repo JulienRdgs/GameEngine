@@ -3,14 +3,14 @@
 ## Document Header
 - **Project Title:** C++ Game Engine Project
 - **Version:** 1.0
-- **Date:** YYYY-MM-DD
-- **Author(s):** [Your Name]
+- **Date:** 2026-02-02
+- **Author(s):** RODRIGUES Julien, LOVISA Emilien, MARTIN Axel, COSSARDEAUX Antoine, BROSSARD Sacha
 - **Contact:** [your.email@example.com]
 
 ## Revision History
 | Date       | Version | Description                | Author      |
 |------------|---------|----------------------------|-------------|
-| YYYY-MM-DD | 1.0     | Initial document creation  | [Your Name] |
+| 2026-02-03 | 1.0     | Initial document creation  | RODRIGUES Julien |
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
@@ -22,9 +22,8 @@
 7. [Performance and Optimization](#7-performance-and-optimization)
 8. [Testing Strategy (TDD Implementation)](#8-testing-strategy-tdd-implementation)
 9. [Tools, Environment, and Deployment](#9-tools-environment-and-deployment)
-10. [Security and Safety Considerations](#10-security-and-safety-considerations)
-11. [Project Timeline and Milestones](#11-project-timeline-and-milestones)
-12. [Appendices](#12-appendices)
+10. [Project Timeline and Milestones](#10-project-timeline-and-milestones)
+11. [Appendices](#11-appendices)
 
 ---
 
@@ -66,8 +65,8 @@ graph TD;
 ```
 
 ### 2.3 Major Components
-- **Rendering Engine:** Handles graphics using APIs like OpenGL or DirectX.
-- **Physics Engine:** Manages collision detection and physics simulations.
+- **Rendering Engine:** Handles graphics using Vulkan.
+- **Physics Engine:** Manages collision detection and physics simulations using Bullet.
 - **Audio Engine:** Processes sound effects and music.
 - **Input Manager:** Captures keyboard, mouse, and gamepad events.
 - **Game Logic:** Integrates modules via a scripting interface.
@@ -275,15 +274,7 @@ TEST(RendererTest, InitializeSuccess) {
 
 ---
 
-## 10. Security and Safety Considerations
-
-- Validate all external input to avoid runtime vulnerabilities.
-- Implement robust error handling.
-- Perform regular code reviews and security audits.
-
----
-
-## 11. Project Timeline and Milestones
+## 10. Project Timeline and Milestones
 
 - **Phase 1:** Requirement Analysis & Detailed Design
 - **Phase 2:** Core Module Development (Rendering, Physics, Audio, Input)
@@ -293,18 +284,18 @@ TEST(RendererTest, InitializeSuccess) {
 
 ---
 
-## 12. Appendices
+## 11. Appendices
 
-### 12.1 Glossary
+### 11.1 Glossary
 
 - **Game Engine:** The core framework managing all game processes.
 - **Module:** A self-contained component providing specific functionality.
 - **Shader:** A program executed on the GPU to control rendering.
 
-### 12.2 Additional Diagrams
+### 11.2 Additional Diagrams
 
 - Include any additional architectural diagrams or flowcharts as needed.
 
-### 12.3 References and Further Reading
+### 11.3 References and Further Reading
 
 - Additional resources on C++ game development and engine architecture.
