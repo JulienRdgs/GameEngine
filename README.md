@@ -20,31 +20,28 @@
 5. [Detailed Module Design](#5-detailed-module-design)
 6. [Interface Design](#6-interface-design)
 7. [Performance and Optimization](#7-performance-and-optimization)
-8. [Testing Strategy (TDD Implementation)](#8-testing-strategy-tdd-implementation)
-9. [Tools, Environment, and Deployment](#9-tools-environment-and-deployment)
-10. [Project Timeline and Milestones](#10-project-timeline-and-milestones)
-11. [Appendices](#11-appendices)
+8. [Tools, Environment, and Deployment](#8-tools-environment-and-deployment)
+9. [Project Timeline and Milestones](#9-project-timeline-and-milestones)
+10. [Appendices](#10-appendices)
 
 ---
 
 ## 1. Introduction
 
 ### 1.1 Purpose
-This document outlines the technical design for a modular C++ Game Engine, detailing its architecture, modules, and Test-Driven Development (TDD) approach.
+This document outlines the technical design for a modular C++ Game Engine, detailing its architecture and modules.
 
 ### 1.2 Scope
-- **Objective:** Develop a cross-platform game engine for rendering, physics, audio, and input management.
+- **Objective:** Develop a game engine for rendering, physics, audio, and input management.
 - **Application:** Real-time game development and academic projects.
 
-### 1.3 Definitions, Acronyms, and Abbreviations
-- **TDD:** Test-Driven Development  
+### 1.3 Definitions, Acronyms, and Abbreviations  
 - **API:** Application Programming Interface  
 - **FPS:** Frames Per Second  
 - **IDE:** Integrated Development Environment
 
 ### 1.4 References
 - [C++ Standard Documentation](https://isocpp.org)
-- [Google Test Framework](https://github.com/google/googletest)
 
 ### 1.5 Document Overview
 This TDD details the design, module interactions, and testing strategies for the game engine, ensuring clarity from high-level architecture to low-level implementation details.
@@ -54,7 +51,7 @@ This TDD details the design, module interactions, and testing strategies for the
 ## 2. System Overview
 
 ### 2.1 High-Level Description
-The engine is a modular system written in C++ (C++17 or later), designed to manage rendering, physics simulation, audio processing, and input handling in real-time.
+The engine is a modular system written in C++ (C++20 or later), designed to manage rendering, physics simulation, audio processing, and input handling in real-time.
 
 ### 2.2 System Context Diagram
 
@@ -67,7 +64,7 @@ graph TD;
 ### 2.3 Major Components
 - **Rendering Engine:** Handles graphics using Vulkan.
 - **Physics Engine:** Manages collision detection and physics simulations using Bullet.
-- **Audio Engine:** Processes sound effects and music.
+- **Audio Engine:** Processes sound effects and music using FMOD.
 - **Input Manager:** Captures keyboard, mouse, and gamepad events.
 - **Game Logic:** Integrates modules via a scripting interface.
 
@@ -76,7 +73,7 @@ graph TD;
 ## 3. Requirements
 
 ### 3.1 Functional Requirements
-- Render 2D/3D graphics with dynamic lighting and shading.
+- Render 3D graphics with dynamic lighting and shading.
 - Perform real-time physics simulation and collision detection.
 - Play background music and trigger sound effects.
 - Capture and process user inputs.
@@ -85,7 +82,7 @@ graph TD;
 ### 3.2 Non-Functional Requirements
 - **Performance:** Maintain a minimum of 60 FPS.
 - **Scalability:** Modular design for easy extension.
-- **Portability:** Support Windows, Linux, and macOS.
+- **Portability:** Support Windows.
 - **Maintainability:** Clear code structure with thorough documentation.
 
 ### 3.3 Use Cases
@@ -95,7 +92,7 @@ graph TD;
 - **Input:** Map user actions to game events.
 
 ### 3.4 Design Constraints and Assumptions
-- Use modern C++ (C++17 or later).
+- Use modern C++ (C++20 or later).
 - Rely on hardware-accelerated graphics.
 - Assume a minimum hardware configuration for target platforms.
 
@@ -202,79 +199,38 @@ int main() {
 - Consistently achieve 60 FPS.
 - Optimize memory usage and processing overhead.
 
-### 7.2 Profiling and Benchmarking
-
-- Integrate profiling tools such as Valgrind or Visual Studio Profiler.
-- Include benchmarking tests as part of the TDD suite.
-
-### 7.3 Optimization Techniques
+### 7.2 Optimization Techniques
 
 - Use object pooling and memory management best practices.
 - Implement batching and frustum culling in the rendering process.
 
 ---
 
-## 8. Testing Strategy (TDD Implementation)
+## 8. Tools, Environment, and Deployment
 
-### 8.1 Overview of TDD
-
-- Write tests before implementation to drive design decisions and ensure code reliability.
-
-### 8.2 Unit Testing
-
-- Develop tests for individual components.
-- **Example using Google Test:**
-
-```cpp
-#include <gtest/gtest.h>
-#include "Renderer.h"
-
-TEST(RendererTest, InitializeSuccess) {
-    Renderer renderer;
-    EXPECT_TRUE(renderer.initialize());
-}
-```
-
-### 8.3 Integration Testing
-
-- Verify that modules interact correctly through integration tests.
-
-### 8.4 Regression Testing
-
-- Maintain a suite of automated tests to catch and fix regressions early.
-
-### 8.5 Testing Tools and Frameworks
-
-- **Framework:** Google Test
-- **CI/CD:** Automate testing with CI pipelines (e.g., GitHub Actions).
-
----
-
-## 9. Tools, Environment, and Deployment
-
-### 9.1 Development Tools and IDEs
+### 8.1 Development Tools and IDEs
 
 - Recommended IDEs: Visual Studio, CLion, or VSCode.
-- Code editors that support C++17 features.
+- Code editors that support C++20 features.
 
-### 9.2 Build System and Automation
+### 8.2 Build System and Automation
 
 - Use CMake for project configuration.
 - Automate builds using CI/CD pipelines.
 
-### 9.3 Version Control
+### 8.3 Version Control
 
 - Use Git for version control.
 - Adopt a clear branching strategy for feature development.
 
-### 9.4 Deployment Environment
+### 8.4 Deployment Environment
 
-- Target platforms: Windows, Linux, macOS.
+- Target platforms: Windows.
 - Provide deployment instructions and environment setup guides.
 
 ---
 
-## 10. Project Timeline and Milestones
+## 9. Project Timeline and Milestones
 
 - **Phase 1:** Requirement Analysis & Detailed Design
 - **Phase 2:** Core Module Development (Rendering, Physics, Audio, Input)
@@ -284,18 +240,18 @@ TEST(RendererTest, InitializeSuccess) {
 
 ---
 
-## 11. Appendices
+## 10. Appendices
 
-### 11.1 Glossary
+### 10.1 Glossary
 
 - **Game Engine:** The core framework managing all game processes.
 - **Module:** A self-contained component providing specific functionality.
 - **Shader:** A program executed on the GPU to control rendering.
 
-### 11.2 Additional Diagrams
+### 10.2 Additional Diagrams
 
 - Include any additional architectural diagrams or flowcharts as needed.
 
-### 11.3 References and Further Reading
+### 10.3 References and Further Reading
 
 - Additional resources on C++ game development and engine architecture.
