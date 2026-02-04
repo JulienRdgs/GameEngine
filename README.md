@@ -29,7 +29,7 @@
 ## 1. Introduction
 
 ### 1.1 Purpose
-This document outlines the technical design for a modular C++ Game Engine, detailing its architecture and modules.
+This document outlines the technical design for the Fuji Engine a modular C++ Game Engine, detailing its architecture and modules.
 
 ### 1.2 Scope
 - **Objective:** Develop a game engine for rendering, physics, audio, and input management.
@@ -149,12 +149,24 @@ graph TD;
 ## 5. Detailed Module Design
 
 ### 5.1 Class Diagrams and Data Structures
-- **Rendering:** `Renderer`, `Shader`, `Texture`
-- **Physics:** `PhysicsEngine`, `Collider`, `RigidBody`, `PhysicsWorld`
-- **Audio:** `AudioEngine`, `Sound`, `MusicPlayer`
-- **Input:** `InputManager`, `Controller`
-- **Editor** `UIManager`, ``
+```mermaid
+graph TD
+    A[Application / Game Loop] --> B[Input Manager]
+    A --> C[Scene Management]
+    A --> D[Renderer]
 
+    C --> E[Entity]
+    E --> F[Components]
+    C --> G[Systems]
+
+    D --> H[Graphics Device]
+    D --> I[Render Resources]
+
+    C --> D
+
+    J[Resource Manager] --> I
+    J --> C
+```
 ### 5.2 Key Algorithms and Code Snippets
 
 #### Basic Rendering Loop in C++
