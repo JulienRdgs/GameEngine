@@ -51,7 +51,7 @@ This TDD details the design, module interactions, and testing strategies for the
 ## 2. System Overview
 
 ### 2.1 High-Level Description
-The engine is a modular system written in C++ (C++20 or later), designed to manage rendering, physics simulation, audio processing, and input handling in real-time.
+The engine is a modular system written in C++ (C++20), designed to manage rendering, physics simulation, audio processing, and input handling in real-time.
 
 ### 2.2 System Context Diagram
 
@@ -63,8 +63,19 @@ graph TD;
 
 ### 2.3 Major Components
 - **Rendering Engine:** Handles graphics using Vulkan.
-- **Physics Engine:** Manages collision detection and physics simulations using Bullet.
+    - Why Vulkan ? : Futureproof; Allows deep understanding and learning of the rendering pipeline; Multiplatform support;
+    - Why not OpenGL : Too basic; No longer updated / supported;
+    - Why not Dx11 : Slowly replaced by Dx12; Only available for Windows;
+    - Why not Dx12 : Only available for Windows;
+                         
+- **Physics Engine:** Manages collision detection and physics simulations using Jolt.
+      - Why Jolt ? : Easy to understand and implement; Modern C++ ;
+      - Why not PhysX : Too hard to understand and implement; Not open-source
+      - Why not Bullet : Old API; Documentation not updated;
 - **Audio Engine:** Processes sound effects and music using FMOD.
+      - Why FMOD ? : Most used overall (lots of documentation and support available) ; Lots of features;
+      - Why not Mini Audio : Less features; Less adapted to Sound Design;
+      - Why not OpenAL : Too old;
 - **Input Manager:** Captures keyboard, mouse, and gamepad events.
 - **Game Logic:** Integrates modules via a scripting interface.
 
@@ -78,6 +89,7 @@ graph TD;
 - Play background music and trigger sound effects.
 - Capture and process user inputs.
 - Provide a scripting interface for game behavior customization.
+- Use multithreading to separate game/physics update and rendering. (Advanced feature)
 
 ### 3.2 Non-Functional Requirements
 - **Performance:** Maintain a minimum of 60 FPS.
@@ -92,7 +104,7 @@ graph TD;
 - **Input:** Map user actions to game events.
 
 ### 3.4 Design Constraints and Assumptions
-- Use modern C++ (C++20 or later).
+- Use modern C++ (C++20).
 - Rely on hardware-accelerated graphics.
 - Assume a minimum hardware configuration for target platforms.
 
@@ -131,7 +143,6 @@ graph TD;
 ### 4.4 Design Decisions and Rationale
 - **Language Choice:** C++ for high performance.
 - **Modular Design:** Supports isolated testing and independent module development.
-- **TDD:** Ensures high code quality and early bug detection.
 
 ---
 
@@ -139,9 +150,10 @@ graph TD;
 
 ### 5.1 Class Diagrams and Data Structures
 - **Rendering:** `Renderer`, `Shader`, `Texture`
-- **Physics:** `PhysicsEngine`, `Collider`, `RigidBody`
+- **Physics:** `PhysicsEngine`, `Collider`, `RigidBody`, `PhysicsWorld`
 - **Audio:** `AudioEngine`, `Sound`, `MusicPlayer`
 - **Input:** `InputManager`, `Controller`
+- **Editor** `UIManager`, ``
 
 ### 5.2 Key Algorithms and Code Snippets
 
@@ -210,7 +222,7 @@ int main() {
 
 ### 8.1 Development Tools and IDEs
 
-- Recommended IDEs: Visual Studio, CLion, or VSCode.
+- Recommended IDEs: Visual Studio.
 - Code editors that support C++20 features.
 
 ### 8.2 Build System and Automation
@@ -248,10 +260,3 @@ int main() {
 - **Module:** A self-contained component providing specific functionality.
 - **Shader:** A program executed on the GPU to control rendering.
 
-### 10.2 Additional Diagrams
-
-- Include any additional architectural diagrams or flowcharts as needed.
-
-### 10.3 References and Further Reading
-
-- Additional resources on C++ game development and engine architecture.
