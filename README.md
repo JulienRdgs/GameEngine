@@ -167,32 +167,8 @@ graph TD
     J[Resource Manager] --> I
     J --> C
 ```
-### 5.2 Key Algorithms and Code Snippets
 
-#### Basic Rendering Loop in C++
-```cpp
-#include <iostream>
-#include "Renderer.h"
-
-int main() {
-    Renderer renderer;
-    if (!renderer.initialize()) {
-        std::cerr << "Renderer initialization failed." << std::endl;
-        return -1;
-    }
-    
-    while (renderer.isRunning()) {
-        renderer.processInput();
-        renderer.updateScene();
-        renderer.renderFrame();
-    }
-    
-    renderer.shutdown();
-    return 0;
-}
-````
-
-### 5.3 Error Handling and Logging
+### 5.2 Error Handling and Logging
 
 - Utilize exception handling for critical errors.
 - Implement a logging system to record runtime events and performance metrics.
